@@ -1,5 +1,5 @@
 import 'package:flutter/widgets.dart';
-import 'package:sneaky_bird_apps_template/src/l10n/app_localizations.dart';
+import 'package:birdcorner_app_template/src/l10n/app_localizations.dart';
 
 /// Helper AppLocalizations lookup class.
 class L10n {

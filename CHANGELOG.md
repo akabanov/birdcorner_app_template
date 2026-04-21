@@ -34,7 +34,7 @@ The types of changes are:
 
 ### Added
 
-- This is the first Sneaky Bird Application release
+- This is the first BirdCorner Application release
 
-[unreleased]: https://github.com/akabanov/sneaky_bird_apps_template/compare/v1.1.0...HEAD
-[1.1.0]: https://github.com/akabanov/sneaky_bird_apps_template/releases/tag/v1.1.0
+[unreleased]: https://github.com/akabanov/birdcorner_app_template/compare/v1.1.0...HEAD
+[1.1.0]: https://github.com/akabanov/birdcorner_app_template/releases/tag/v1.1.0

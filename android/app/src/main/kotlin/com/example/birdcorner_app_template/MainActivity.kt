@@ -1,4 +1,4 @@
-package com.example.sneaky_bird_apps_template
+package com.example.birdcorner_app_template
 
 import io.flutter.embedding.android.FlutterActivity
 

@@ -29,7 +29,7 @@ None
 - Make sure you have all the [prerequisites](#Prerequisites) prepared
 - Login to Google Cloud, Firebase console, and Apple Developer portal and make sure there are no pending usage agreements to be 'signed'
 - Make sure you're logged in to GitHub
-- Open https://github.com/akabanov/sneaky_bird_apps_template/
+- Open https://github.com/akabanov/birdcorner_app_template/
 - Click "Use this template / Create a new repository"
 - **Important**: Use flutter `lowercase_with_underscores` naming convention for your repository/project name
 - **Important**: Use SSH URL (`git@github.com...`) when cloning the new repository

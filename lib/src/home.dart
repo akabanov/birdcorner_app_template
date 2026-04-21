@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:go_router/go_router.dart';
 import 'package:onesignal_flutter/onesignal_flutter.dart';
-import 'package:sneaky_bird_apps_template/src/l10n.dart';
+import 'package:birdcorner_app_template/src/l10n.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});

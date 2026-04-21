@@ -1,8 +1,8 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:onesignal_flutter/onesignal_flutter.dart';
-import 'package:sneaky_bird_apps_template/src/app.dart';
-import 'package:sneaky_bird_apps_template/src/env.dart';
+import 'package:birdcorner_app_template/src/app.dart';
+import 'package:birdcorner_app_template/src/env.dart';
 import 'dart:io';
 
 void main() async {

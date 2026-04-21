@@ -14,7 +14,7 @@ val sign = codeSignKeystoreFile.isFile && codeSignKeystorePassFile.isFile
 val keystorePass = if (sign) codeSignKeystorePassFile.readText().trim() else ""
 
 android {
-    namespace = "com.example.sneaky_bird_apps_template"
+    namespace = "com.example.birdcorner_app_template"
     compileSdk = flutter.compileSdkVersion
     ndkVersion = "27.0.12077973"
 
@@ -28,7 +28,7 @@ android {
     }
 
     defaultConfig {
-        applicationId = "com.example.sneaky_bird_apps_template"
+        applicationId = "com.example.birdcorner_app_template"
         // You can update the following values to match your application needs.
         // For more information, see: https://flutter.dev/to/review-gradle-config.
         minSdk = 23 // firebase_core plugin min SDK version

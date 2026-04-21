@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:gap/gap.dart';
-import 'package:sneaky_bird_apps_template/src/platform_screenshot_provider.dart';
+import 'package:birdcorner_app_template/src/platform_screenshot_provider.dart';
 
 import 'env.dart';
 

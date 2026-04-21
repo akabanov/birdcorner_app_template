@@ -81,7 +81,7 @@ initialise_names_and_identifiers() {
   
   # Domain name
   GIT_USER=$(gh api user --jq '.login')
-  FALLBACK_DOMAIN=$([ "$GIT_USER" == "akabanov" ] && [ "$APP_NAME_SNAKE" != "sneaky_bird_apps_template" ] && echo "sneaky""bird.app" || echo "$TEMPLATE_DOMAIN")
+  FALLBACK_DOMAIN=$([ "$GIT_USER" == "akabanov" ] && [ "$APP_NAME_SNAKE" != "birdcorner_app_template" ] && echo "bird""corner.app" || echo "$TEMPLATE_DOMAIN")
   read -r -p "App domain [${FALLBACK_DOMAIN}]: " APP_DOMAIN
   : "${APP_DOMAIN:=${FALLBACK_DOMAIN}}"
   
