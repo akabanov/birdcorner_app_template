@@ -92,18 +92,22 @@ enum TargetDevice {
   ipad97(1536, 2048, 2),
   ;
 
-  static get android => TargetDevice.values.where((d) => d.isAndroid).toList();
+  static List<TargetDevice> get android =>
+      TargetDevice.values.where((d) => d.isAndroid).toList();
 
-  static get ios => TargetDevice.values.where((d) => !d.isAndroid).toList();
+  static List<TargetDevice> get ios =>
+      TargetDevice.values.where((d) => !d.isAndroid).toList();
 
-  static get iosShortList => const [
+  static List<TargetDevice> get iosShortList =>
+      const [
         iphone69,
         iphone58,
         ipad130,
         ipad105,
       ];
 
-  static get iosMediumList => const [
+  static List<TargetDevice> get iosMediumList =>
+      const [
         iphone69,
         iphone58,
         iphone47,
@@ -112,7 +116,8 @@ enum TargetDevice {
         ipad97,
       ];
 
-  static get iosWithRealisticFrames => const [
+  static List<TargetDevice> get iosWithRealisticFrames =>
+      const [
         iphone65,
         iphone58,
         iphone47,

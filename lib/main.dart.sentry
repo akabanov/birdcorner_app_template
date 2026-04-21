@@ -16,7 +16,7 @@ Future<void> runMainApp(AsyncCallback appInit) async {
   await SentryFlutter.init(
     (options) {
       options.tracesSampleRate = 1.0;
-      options.profilesSampleRate = 1.0;
+      //options.profilesSampleRate = 1.0;
       options.debug = false;
     },
     appRunner: () async {
