@@ -1,6 +1,3 @@
-
-import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
-
 plugins {
     id("com.android.application")
     id("kotlin-android")
@@ -16,7 +13,7 @@ val keystorePass = if (sign) codeSignKeystorePassFile.readText().trim() else ""
 android {
     namespace = "com.example.birdcorner_app_template"
     compileSdk = flutter.compileSdkVersion
-    ndkVersion = "27.0.12077973"
+    ndkVersion = "28.2.13676358"
 
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_17
@@ -31,7 +28,7 @@ android {
         applicationId = "com.example.birdcorner_app_template"
         // You can update the following values to match your application needs.
         // For more information, see: https://flutter.dev/to/review-gradle-config.
-        minSdk = 23 // firebase_core plugin min SDK version
+        minSdk = flutter.minSdkVersion // firebase_core plugin min SDK version
         targetSdk = 35 // https://developer.android.com/google/play/requirements/target-sdk
         versionCode = flutter.versionCode
         versionName = flutter.versionName

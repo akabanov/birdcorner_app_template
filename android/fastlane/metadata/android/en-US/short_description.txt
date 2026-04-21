@@ -1,0 +1,1 @@
+This is a BirdCorner template application. It helps with debugging Google Play deployments.
