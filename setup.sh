@@ -162,13 +162,45 @@ setup_firebase() {
 
   echo "Choosing active google cloud account"
   GOOGLE_ACCOUNT=$(gcloud --quiet config get-value account 2>/dev/null)
+
+  # Check if account is set AND credentials are actually valid
+  NEEDS_LOGIN=false
   if [[ "$GOOGLE_ACCOUNT" == "(unset)" ]] || [[ -z "$GOOGLE_ACCOUNT" ]]; then
-    echo "Not logged in. Starting authentication..."
+    NEEDS_LOGIN=true
+  elif ! gcloud auth print-access-token --account="$GOOGLE_ACCOUNT" > /dev/null 2>&1; then
+    echo "Credentials for $GOOGLE_ACCOUNT are expired or invalid."
+    NEEDS_LOGIN=true
+  fi
+
+  if [[ "$NEEDS_LOGIN" == true ]]; then
+    echo "Starting authentication..."
     gcloud auth login
     GOOGLE_ACCOUNT=$(gcloud --quiet config get-value account 2>/dev/null)
   else
     echo "Currently logged in as: $GOOGLE_ACCOUNT"
     read -n 1 -r -p "Continue with this account? (Y/n) " YN && [[ "$YN" =~ ^[nN] ]] && gcloud auth login
+    echo
+  fi
+
+  echo "Choosing active Firebase account"
+  FIREBASE_ACCOUNT=$(firebase login:list 2>/dev/null | grep -oE '[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}' | head -1)
+
+  # Check if account is set AND credentials are actually valid
+  NEEDS_LOGIN=false
+  if [[ -z "$FIREBASE_ACCOUNT" ]]; then
+    NEEDS_LOGIN=true
+  elif ! firebase projects:list > /dev/null 2>&1; then
+    echo "Firebase credentials for $FIREBASE_ACCOUNT are expired or invalid."
+    NEEDS_LOGIN=true
+  fi
+
+  if [[ "$NEEDS_LOGIN" == true ]]; then
+    echo "Starting Firebase authentication..."
+    firebase login
+    FIREBASE_ACCOUNT=$(firebase login:list 2>/dev/null | grep -oE '[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}' | head -1)
+  else
+    echo "Currently logged in as: $FIREBASE_ACCOUNT"
+    read -n 1 -r -p "Continue with this account? (Y/n) " YN && [[ "$YN" =~ ^[nN] ]] && firebase login --reauth
     echo
   fi
 
@@ -268,6 +300,10 @@ create_google_flavor_service_account() {
   # Ensure account exists
   if ! gcloud iam service-accounts describe "$accountEmail" &>/dev/null; then
       gcloud iam service-accounts create "$accountName" --display-name="$displayName"
+      echo "Waiting for service account $accountEmail to propagate..."
+      until gcloud iam service-accounts describe "$accountEmail" &>/dev/null; do
+        sleep 1
+      done
   else
       echo "Service account $accountEmail already exists"
   fi
