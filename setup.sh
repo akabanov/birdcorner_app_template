@@ -349,7 +349,34 @@ setup_shorebird() {
 
   echo
   echo "Integrating with Shorebird"
-  shorebird login
+
+  CREDS_FILE=~/.config/shorebird/credentials.json
+  NEEDS_LOGIN=false
+
+  if [[ ! -f "$CREDS_FILE" ]]; then
+    NEEDS_LOGIN=true
+  else
+    SHOREBIRD_ACCOUNT=$(jq -r '.idToken' "$CREDS_FILE" | cut -d'.' -f2 | base64 -d 2>/dev/null | jq -r '.email')
+    SHOREBIRD_EXPIRY=$(jq -r '.accessToken.expiry' "$CREDS_FILE")
+
+    if [[ -z "$SHOREBIRD_ACCOUNT" ]] || [[ "$SHOREBIRD_ACCOUNT" == "null" ]]; then
+      NEEDS_LOGIN=true
+    elif [[ $(date -u +%s) -ge $(date -u -d "$SHOREBIRD_EXPIRY" +%s 2>/dev/null) ]]; then
+      echo "Shorebird credentials for $SHOREBIRD_ACCOUNT are expired."
+      shorebird logout
+      NEEDS_LOGIN=true
+    fi
+  fi
+
+  if [[ "$NEEDS_LOGIN" == true ]]; then
+    echo "Starting Shorebird authentication..."
+    shorebird login
+  else
+    echo "Currently logged in as: $SHOREBIRD_ACCOUNT"
+    read -n 1 -r -p "Continue with this account? (Y/n) " YN && [[ "$YN" =~ ^[nN] ]] && shorebird login
+    echo
+  fi
+
   shorebird init --display-name "${BASE_PROJECT_LABEL}"
   echo "Done"
 }
