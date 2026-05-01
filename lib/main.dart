@@ -18,7 +18,7 @@ Future<void> runMainApp(AsyncCallback appInit) async {
 
 void tryInitOneSignal() {
   const appId = Env.oneSignalAppId;
-  if (appId.isNotEmpty && (Platform.isIOS || Platform.isAndroid)) {
+  if (appId.isNotEmpty && !kIsWeb && (Platform.isIOS || Platform.isAndroid)) {
     // OneSignal.Debug.setLogLevel(OSLogLevel.verbose);
     OneSignal.initialize(appId);
   }
