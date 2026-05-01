@@ -26,6 +26,8 @@ Future<void> runMainApp(AsyncCallback appInit) async {
         return scope.setTag('shorebird', tag);
       });
 
+      WidgetsFlutterBinding.ensureInitialized();
+
       await appInit();
       tryInitOneSignal();
       return runApp(App());

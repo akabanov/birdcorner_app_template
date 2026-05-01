@@ -10,6 +10,7 @@ void main() async {
 }
 
 Future<void> runMainApp(AsyncCallback appInit) async {
+  WidgetsFlutterBinding.ensureInitialized();
   await appInit();
   tryInitOneSignal();
   runApp(App());
