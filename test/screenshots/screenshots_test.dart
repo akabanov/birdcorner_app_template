@@ -3,10 +3,10 @@ library;
 
 import 'dart:io';
 
+import 'package:birdcorner_app_template/gen/app_localizations.dart';
 import 'package:flutter/material.dart';
 import 'package:birdcorner_app_template/src/details.dart';
 import 'package:birdcorner_app_template/src/home.dart';
-import 'package:birdcorner_app_template/src/l10n/app_localizations.dart';
 import 'package:birdcorner_app_template/src/platform_screenshot_provider.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_test/flutter_test.dart';
